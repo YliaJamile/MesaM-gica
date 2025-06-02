@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MesaMágica - Juegos de Mesa Modernos</title>
+    <style>
+        /* Estilos básicos */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        nav {
+            background-color: #34495e;
+            padding: 0.5rem;
+        }
+        
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        
+        nav li {
+            margin: 0 1rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        main {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .product-info {
+            padding: 1rem;
+        }
+        
+        .price {
+            font-weight: bold;
+            color: #e74c3c;
+            font-size: 1.2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #e74c3c;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-top: 0.5rem;
+        }
+        
+        .btn:hover {
+            background-color: #c0392b;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        /* Estilos para el formulario */
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        
+        form input, form textarea, form select {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        form button {
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        /* Estilos para la comunidad */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .gallery img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        
+        /* Estilos para el juego */
+        #game-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        #memory-board {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            max-width: 500px;
+            margin: 20px auto;
+        }
+        
+        .memory-card {
+            height: 100px;
+            background-color: #3498db;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        
+        .memory-card.flipped {
+            background-color: white;
+            color: #2c3e50;
+        }
+        
+        #game-message {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>MesaMágica</h1>
+        <p>Descubre los mejores juegos de mesa modernos</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#" onclick="showSection('home')">Inicio</a></li>
+            <li><a href="#" onclick="showSection('catalog')">Catálogo</a></li>
+            <li><a href="#" onclick="showSection('contact')">Contacto</a></li>
+            <li><a href="#" onclick="showSection('community')">Comunidad</a></li>
+            <li><a href="#" onclick="showSection('game')">Juega con Nosotros</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <!-- Sección de Inicio -->
+        <section id="home" class="content-section">
+            <h2>Bienvenido a MesaMágica</h2>
+            <p>En MesaMágica nos apasionan los juegos de mesa modernos. Ofrecemos una cuidadosa selección de los mejores títulos para todas las edades y gustos.</p>
+            
+            <h3>Nuestras ventajas</h3>
+            <ul>
+                <li>Asesoramiento experto para elegir el juego perfecto</li>
+                <li>Envíos rápidos y seguros a todo el país</li>
+                <li>Precios competitivos y ofertas exclusivas</li>
+                <li>Comunidad activa de jugadores</li>
+                <li>Eventos y torneos mensuales</li>
+            </ul>
+            
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="https://plazavea.vteximg.com.br/arquivos/ids/29187707-1000-1000/20425053.jpg?v=638552226483800000" alt="UNO" class="product-image">
+                    <div class="product-info">
+                        <h3>UNO</h3>
+                        <p class="price">s/. 24.90</p>
+                        <p>El clásico juego de estrategia.</p>
+                        <a href="#" class="btn" onclick="showProductDetail('UNO')">Ver más</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://plazavea.vteximg.com.br/arquivos/ids/28568550-465-465/914668.jpg" alt="Monopolio" class="product-image">
+                    <div class="product-info">
+                        <h3>Monopolio</h3>
+                        <p class="price">s/. 49.90</p>
+                        <p>El clásico juego de estrategia y negociación.</p>
+                        <a href="#" class="btn" onclick="showProductDetail('Monopolio')">Ver más</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://plazavea.vteximg.com.br/arquivos/ids/30227247-465-465/imageUrl_1.jpg" alt="Basta" class="product-image">
+                    <div class="product-info">
+                        <h3>Basta</h3>
+                        <p class="price">s/. 21.90</p>
+                        <p>Juego Cartas Familiar Basta Mini Piensa Rápido Express</p>
+                        <a href="#" class="btn" onclick="showProductDetail('Basta')">Ver más</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Sección de Catálogo -->
+        <section id="catalog" class="content-section hidden">
+            <h2>Nuestro Catálogo</h2>
+            <p>Explora nuestra selección de juegos de mesa modernos.</p>
+            
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1608889825103-eb5a5c1d1ee5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Catan" class="product-image">
+                    <div class="product-info">
+                        <h3>Catan</h3>
+                        <p class="price">$45.990</p>
+                        <p>El clásico juego de estrategia y negociación.</p>
+                        <a href="#" class="btn" onclick="showProductDetail('catan')">Ver más</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1608889825271-9696287a7d1a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Ticket to Ride" class="product-image">
+                    <div class="product-info">
+                        <h3>Ticket to Ride</h3>
+                        <p class="price">$52.990</p>
+                        <p>Construye rutas ferroviarias en este emocionante juego.</p>
+                        <a href="#" class="btn" onclick="showProductDetail('ticket')">Ver más</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Pandemic" class="product-image">
+                    <div class="product-info">
+                        <h3>Pandemic</h3>
+                        <p class="price">$49.990</p>
+                        <p>Trabaja en equipo para salvar al mundo de enfermedades.</p>
+                        <a href="#" class="btn" onclick="showProductDetail('pandemic')">Ver más</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Carcassonne" class="product-image">
+                    <div class="product-info">
+                        <h3>Carcassonne</h3>
+                        <p class="price">$39.990</p>
+                        <p>Construye ciudades, caminos y campos en este juego de colocación de losetas.</p>
+                        <a href="#" class="btn" onclick="showProductDetail('carcassonne')">Ver más</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="7 Wonders" class="product-image">
+                    <div class="product-info">
+                        <h3>7 Wonders</h3>
+                        <p class="price">$59.990</p>
+                        <p>Construye una de las maravillas del mundo antiguo en este juego de cartas.</p>
+                        <a href="#" class="btn" onclick="showProductDetail('wonders')">Ver más</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Azul" class="product-image">
+                    <div class="product-info">
+                        <h3>Azul</h3>
+                        <p class="price">$42.990</p>
+                        <p>Un hermoso juego abstracto sobre la colocación de azulejos.</p>
+                        <a href="#" class="btn" onclick="showProductDetail('azul')">Ver más</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Fichas de producto individuales (inicialmente ocultas) -->
+        <section id="product-detail" class="content-section hidden">
+            <a href="#" class="btn" onclick="goBackToCatalog()">← Volver al catálogo</a>
+            
+            <div id="catan-detail" class="product-detail hidden">
+                <h2>Catan</h2>
+                <div style="display: flex; gap: 2rem; margin-top: 1rem;">
+                    <img src="https://images.unsplash.com/photo-1608889825103-eb5a5c1d1ee5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Catan" style="width: 300px; height: auto; border-radius: 8px;">
+                    <div>
+                        <p class="price" style="font-size: 1.5rem;">$45.990</p>
+                        <p><strong>Duración:</strong> 60-90 minutos</p>
+                        <p><strong>Jugadores:</strong> 3-4 (hasta 6 con expansión)</p>
+                        <p><strong>Edad:</strong> 10+</p>
+                        <button class="btn" style="margin-top: 1rem;">Añadir al carrito</button>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem;">
+                    <h3>Descripción detallada</h3>
+                    <p>En Catan, los jugadores intentan ser la fuerza dominante en la isla de Catan colonizando terrenos, construyendo ciudades y carreteras, y comerciando entre ellos. Cada turno, los jugadores tiran los dados para determinar qué terrenos producen recursos, que se utilizan para construir más carreteras, asentamientos o ciudades, o para comprar cartas de desarrollo.</p>
+                    
+                    <h3>Características principales</h3>
+                    <ul>
+                        <li>Juego de estrategia con elementos de negociación</li>
+                        <li>Tablero modular que ofrece alta rejugabilidad</li>
+                        <li>Perfecto para familias y grupos de amigos</li>
+                        <li>Numerosas expansiones disponibles</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div id="ticket-detail" class="product-detail hidden">
+                <h2>Ticket to Ride</h2>
+                <div style="display: flex; gap: 2rem; margin-top: 1rem;">
+                    <img src="https://images.unsplash.com/photo-1608889825271-9696287a7d1a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Ticket to Ride" style="width: 300px; height: auto; border-radius: 8px;">
+                    <div>
+                        <p class="price" style="font-size: 1.5rem;">$52.990</p>
+                        <p><strong>Duración:</strong> 30-60 minutos</p>
+                        <p><strong>Jugadores:</strong> 2-5</p>
+                        <p><strong>Edad:</strong> 8+</p>
+                        <button class="btn" style="margin-top: 1rem;">Añadir al carrito</button>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem;">
+                    <h3>Descripción detallada</h3>
+                    <p>Ticket to Ride es un juego de construcción de rutas ferroviarias a través de América del Norte. Los jugadores recolectan cartas de diferentes tipos de vagones que les permiten reclamar rutas ferroviarias en el tablero. Cuanto más largas sean las rutas, más puntos ganarán. Los jugadores también pueden completar billetes de destino conectando dos ciudades distantes para obtener puntos adicionales.</p>
+                    
+                    <h3>Características principales</h3>
+                    <ul>
+                        <li>Fácil de aprender pero con profundidad estratégica</li>
+                        <li>Hermoso tablero y componentes de alta calidad</li>
+                        <li>Múltiples versiones con mapas de diferentes regiones</li>
+                        <li>Gran juego familiar y para principiantes</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div id="pandemic-detail" class="product-detail hidden">
+                <h2>Pandemic</h2>
+                <div style="display: flex; gap: 2rem; margin-top: 1rem;">
+                    <img src="https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Pandemic" style="width: 300px; height: auto; border-radius: 8px;">
+                    <div>
+                        <p class="price" style="font-size: 1.5rem;">$49.990</p>
+                        <p><strong>Duración:</strong> 45 minutos</p>
+                        <p><strong>Jugadores:</strong> 2-4</p>
+                        <p><strong>Edad:</strong> 8+</p>
+                        <button class="btn" style="margin-top: 1rem;">Añadir al carrito</button>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem;">
+                    <h3>Descripción detallada</h3>
+                    <p>En Pandemic, los jugadores trabajan juntos como miembros de un equipo de expertos en enfermedades para tratar de contener y erradicar cuatro enfermedades que amenazan al mundo. Cada jugador tiene un rol único con habilidades especiales, y todos deben planificar estratégicamente sus acciones para encontrar curas antes de que sea demasiado tarde.</p>
+                    
+                    <h3>Características principales</h3>
+                    <ul>
+                        <li>Juego cooperativo donde todos ganan o pierden juntos</li>
+                        <li>Mecánicas únicas que fomentan el trabajo en equipo</li>
+                        <li>Diferentes niveles de dificultad</li>
+                        <li>Numerosas expansiones que añaden nuevos desafíos</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Sección de Contacto -->
+        <section id="contact" class="content-section hidden">
+            <h2>Contacto</h2>
+            <p>¿Tienes preguntas? Escríbenos y te responderemos lo antes posible.</p>
+            
+            <form id="contact-form">
+                <div>
+                    <label for="name">Nombre:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div>
+                    <label for="email">Correo electrónico:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div>
+                    <label for="subject">Asunto:</label>
+                    <select id="subject" name="subject">
+                        <option value="question">Consulta general</option>
+                        <option value="order">Consulta sobre pedido</option>
+                        <option value="suggestion">Sugerencia</option>
+                        <option value="other">Otro</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label for="message">Mensaje:</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                
+                <button type="submit">Enviar mensaje</button>
+            </form>
+        </section>
+        
+        <!-- Sección de Comunidad -->
+        <section id="community" class="content-section hidden">
+            <h2>Nuestra Comunidad</h2>
+            <p>Únete a nuestra comunidad de amantes de los juegos de mesa. Comparte tus experiencias, participa en eventos y gana insignias.</p>
+            
+            <h3>Galería de eventos</h3>
+            <div class="gallery">
+                <img src="https://noticias.udec.cl/wp-content/uploads/2024/03/tempImageG6KpVt-e1711029677746-1024x683.jpg" alt="Torneo de Catan">
+                <img src="https://media.dondinojuguetes.es/product/games-night-800x800.jpg?width=1200" alt="Noche de juegos">
+                <img src="https://i5.walmartimages.com.mx/mg/gm/1p/images/product-images/img_large/00019473505639l.jpg?odnHeight=612&odnWidth=612&odnBg=FFFFFF" alt="Taller para principiantes">
+                <img src="https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2024/04/juegos-mesa-vendidos-historia-3304812.jpg?tf=1200x" alt="Lanzamiento de nuevo juego">
+                <img src="https://images.unsplash.com/photo-1560253023-3ec5d502959f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Partida de Pandemic">
+                <img src="https://scontent.faqp4-2.fna.fbcdn.net/v/t1.6435-9/101022335_280420426698596_2665709935169372160_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGFK3nklyGSxp4qbrNmQYRebd0iU_cYHfFt3SJT9xgd8fPvy31rTZANPrNsTdFg9gMj3siC4v9B6oQfKCCFwIGY&_nc_ohc=lG-Bz0dMBUwQ7kNvwF_bLQi&_nc_oc=AdlE9KSryzk1tXuloKnk4QsTgxFwpYAFXC5d1jgW3wec2cjOFxFdlo-SQ5MdGh48sYg&_nc_zt=23&_nc_ht=scontent.faqp4-2.fna&_nc_gid=zR5-e4f-g6qQ7sqRDXgUdg&oh=00_AfIPLSm6o_wugAsKC7aw5ReMqmi8eEkBfA_wPv8j0RgpwQ&oe=686495F0" alt="Fiesta de aniversario">
+            </div>
+            
+            <h3 style="margin-top: 2rem;">Sistema de niveles</h3>
+            <p>Participa en nuestros eventos y compra productos para subir de nivel y desbloquear beneficios exclusivos.</p>
+            
+            <div style="display: flex; justify-content: space-between; margin-top: 1rem;">
+                <div style="text-align: center;">
+                    <div style="background-color: #bdc3c7; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto;">1</div>
+                    <p>Novato</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="background-color: #95a5a6; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto;">2</div>
+                    <p>Aficionado</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="background-color: #7f8c8d; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto;">3</div>
+                    <p>Experto</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="background-color: #34495e; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto;">4</div>
+                    <p>Maestro</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="background-color: #e74c3c; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto;">5</div>
+                    <p>Leyenda</p>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 2rem;">Insignias disponibles</h3>
+            <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                <div style="text-align: center;">
+                    <img src="https://via.placeholder.com/50" alt="Primera compra" style="width: 50px; height: 50px;">
+                    <p>Primera compra</p>
+                </div>
+                <div style="text-align: center;">
+                    <img src="https://via.placeholder.com/50" alt="Jugador social" style="width: 50px; height: 50px;">
+                    <p>Jugador social</p>
+                </div>
+                <div style="text-align: center;">
+                    <img src="https://via.placeholder.com/50" alt="Coleccionista" style="width: 50px; height: 50px;">
+                    <p>Coleccionista</p>
+                </div>
+                <div style="text-align: center;">
+                    <img src="https://via.placeholder.com/50" alt="Organizador" style="width: 50px; height: 50px;">
+                    <p>Organizador</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Sección del Juego -->
+        <section id="game" class="content-section hidden">
+            <h2>Juega con Nosotros</h2>
+            <p>Prueba nuestro mini-juego de memoria con temática de juegos de mesa. Encuentra todas las parejas en el menor tiempo posible.</p>
+            
+            <div id="game-container">
+                <h3>Memory de Juegos de Mesa</h3>
+                <p>Haz clic en las cartas para encontrar las parejas.</p>
+                
+                <div id="memory-board"></div>
+                
+                <div id="game-message"></div>
+                
+                <button id="restart-btn" class="btn" style="margin-top: 1rem;">Reiniciar Juego</button>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>© 2025 MesaMágica - Todos los derechos reservados</p>
+        <p>Contacto: info@mesamagica.com | Teléfono: +56 9 1234 5678</p>
+        <div style="margin-top: 0.5rem;">
+            <a href="#" style="color: white; margin: 0 0.5rem;">Términos y condiciones</a>
+            <a href="#" style="color: white; margin: 0 0.5rem;">Política de privacidad</a>
+        </div>
+    </footer>
+    
+    <script>
+        // Mostrar/ocultar secciones
+        function showSection(sectionId) {
+            // Ocultar todas las secciones
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            // Mostrar la sección solicitada
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
+        
+        // Mostrar detalles del producto
+        function showProductDetail(productId) {
+            // Ocultar todas las secciones
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            // Mostrar la sección de detalles del producto
+            document.getElementById('product-detail').classList.remove('hidden');
+            
+            // Ocultar todos los detalles de producto
+            document.querySelectorAll('.product-detail').forEach(detail => {
+                detail.classList.add('hidden');
+            });
+            
+            // Mostrar el detalle del producto solicitado
+            document.getElementById(`${productId}-detail`).classList.remove('hidden');
+        }
+        
+        // Volver al catálogo desde la vista de detalle
+        function goBackToCatalog() {
+            document.getElementById('product-detail').classList.add('hidden');
+            document.getElementById('catalog').classList.remove('hidden');
+        }
+        
+        // Manejar el formulario de contacto
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Gracias por tu mensaje. Nos pondremos en contacto contigo pronto.');
+            this.reset();
+        });
+        
+        // Juego de memoria
+        document.addEventListener('DOMContentLoaded', function() {
+            const memoryBoard = document.getElementById('memory-board');
+            const gameMessage = document.getElementById('game-message');
+            const restartBtn = document.getElementById('restart-btn');
+            
+            const cards = ['🎲', '♟️', '🃏', '🎯', '🧩', '🏆', '🎲', '♟️', '🃏', '🎯', '🧩', '🏆'];
+            let flippedCards = [];
+            let matchedPairs = 0;
+            
+            // Barajar las cartas
+            function shuffleCards() {
+                for (let i = cards.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [cards[i], cards[j]] = [cards[j], cards[i]];
+                }
+            }
+            
+            // Crear el tablero de juego
+            function createBoard() {
+                memoryBoard.innerHTML = '';
+                flippedCards = [];
+                matchedPairs = 0;
+                gameMessage.textContent = '';
+                
+                shuffleCards();
+                
+                cards.forEach((card, index) => {
+                    const cardElement = document.createElement('div');
+                    cardElement.classList.add('memory-card');
+                    cardElement.dataset.index = index;
+                    cardElement.textContent = '?';
+                    cardElement.addEventListener('click', flipCard);
+                    memoryBoard.appendChild(cardElement);
+                });
+            }
+            
+            // Voltear una carta
+            function flipCard() {
+                if (flippedCards.length < 2 && !flippedCards.includes(this) && this.textContent === '?') {
+                    const index = this.dataset.index;
+                    this.textContent = cards[index];
+                    this.classList.add('flipped');
+                    flippedCards.push(this);
+                    
+                    if (flippedCards.length === 2) {
+                        checkForMatch();
+                    }
+                }
+            }
+            
+            // Comprobar si hay coincidencia
+            function checkForMatch() {
+                const [card1, card2] = flippedCards;
+                
+                if (card1.textContent === card2.textContent) {
+                    // Coincidencia
+                    card1.removeEventListener('click', flipCard);
+                    card2.removeEventListener('click', flipCard);
+                    flippedCards = [];
+                    matchedPairs++;
+                    
+                    if (matchedPairs === cards.length / 2) {
+                        gameMessage.textContent = '¡Felicidades! Has ganado el juego.';
+                    }
+                } else {
+                    // No hay coincidencia
+                    setTimeout(() => {
+                        card1.textContent = '?';
+                        card2.textContent = '?';
+                        card1.classList.remove('flipped');
+                        card2.classList.remove('flipped');
+                        flippedCards = [];
+                    }, 1000);
+                }
+            }
+            
+            // Reiniciar el juego
+            restartBtn.addEventListener('click', createBoard);
+            
+            // Inicializar el juego
+            createBoard();
+        });
+        
+        // Mostrar la sección de inicio por defecto
+        document.addEventListener('DOMContentLoaded', function() {
+            showSection('home');
+        });
+    </script>
+</body>
+</html>
